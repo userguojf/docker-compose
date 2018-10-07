@@ -32,7 +32,7 @@ services:
         - ./work/components/php72/config/php.ini:/usr/local/etc/php/php.ini:ro
         - ./work/components/php72/config/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf:rw
         - ./work/components/php72/log:/var/log:rw
-        - ./work/components/php72/docker-php-entrypoint:/usr/local/bin/docker-php-entrypoint:rw
+        - ./work/components/php72/start.sh:/home/start.sh:rw
         - ./work/components/php72/crontabs/root:/var/spool/cron/crontabs/root:rw
       restart: always
       networks:

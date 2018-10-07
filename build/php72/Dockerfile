@@ -45,3 +45,5 @@ RUN chmod 755 /usr/local/bin/composer
 RUN if [ $CHANGE_SOURCE = true ]; then \
 	composer config -g repo.packagist composer https://packagist.laravel-china.org \
 ;fi
+
+ENTRYPOINT ["/bin/bash", "/home/start.sh"]
