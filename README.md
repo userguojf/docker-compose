@@ -100,9 +100,9 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
         echo "Stored string in redis:: " . $redis->get("test-key");
     ?>
 
-##### 如何使用 PHP 组件里的计划任务
+##### 如何使用 PHP 组件里的计划任务？
 
-直接在 /work/components/php72/cron.d 新建 crontab 文件就行了，比如做个备份计划可以将备份的文件保存到 cron.d 同级 backup 目录下面，里面的 task 为示例其中有几个坑都趟平了可以看下文件里的注释说明
+直接在 /work/components/php72/cron.d 新建 crontab 文件或者使用自带的 task 就行了，比如做数据库备份计划可以将备份的文件保存到 cron.d 同级 backup 目录下面，其中有几个坑都趟平了可以看下 task 文件里的注释说明，另外不用担心容器重启后计划任务停止，只要容器在运行你的任务就在运行。
 
 ##### 其他的坑
 
