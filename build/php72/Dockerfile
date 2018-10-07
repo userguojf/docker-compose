@@ -46,9 +46,6 @@ RUN if [ $CHANGE_SOURCE = true ]; then \
 	composer config -g repo.packagist composer https://packagist.laravel-china.org \
 ;fi
 
-# 在 docker 里使用 Crontab 时候需要取消验证
-# RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/cron
-
 ENV LC_ALL C.UTF-8
 
 ENTRYPOINT ["/bin/bash", "/home/start.sh"]

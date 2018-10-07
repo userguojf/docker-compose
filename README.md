@@ -1,4 +1,4 @@
-## Docker LNMP 3
+## Docker LNMP 3.0
 
 Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在短时间内随意构建不同版本的相关服务、环境统一分布在不同服务器等，使开发者能够更专注于开发业务本身。
 
@@ -6,12 +6,13 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
 
 * 灵活切换适合国内的源（apt-get、PHP Composer）
 * 组件精简易懂，学习、测试环境、生产环境均适合
+* 可能是最易用的计划任务（安装在 PHP 组件里）
 * 良好的扩展性
 * 非常合理的结构划分（吐槽 Laradock）
 
 ##### 版本及组件
 
-* 当前版本：3
+* 当前版本：3.0
 * 自带组件：PHP/FPM 7.2、Nginx latest、Mysql 5.6、Redis 4.0
 
 ##### 目录结构
@@ -98,6 +99,10 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
         $redis->set("test-key","hello");
         echo "Stored string in redis:: " . $redis->get("test-key");
     ?>
+
+##### 如何使用 PHP 组件里的计划任务
+
+直接在 /work/components/php72/cron.d 新建 crontab 文件就行了，比如做个备份计划可以将备份的文件保存到 cron.d 同级 backup 目录下面，里面的 task 为示例其中有几个坑都趟平了可以看下文件里的注释说明
 
 ##### 其他的坑
 
