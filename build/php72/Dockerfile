@@ -46,9 +46,6 @@ RUN if [ $CHANGE_SOURCE = true ]; then \
 	composer config -g repo.packagist composer https://packagist.laravel-china.org \
 ;fi
 
-# Crontab
-COPY task /var/spool/cron/crontabs/root
-RUN chown -R root:crontab /var/spool/cron/crontabs/root \
- && chmod 600 /var/spool/cron/crontabs/root
+ENV LC_ALL C.UTF-8
 
 ENTRYPOINT ["/bin/bash", "/home/start.sh"]

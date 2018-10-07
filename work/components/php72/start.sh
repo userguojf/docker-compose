@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# 运行自启动计划任务进程
+set -x
+
+# 保存环境变量，使容器内正常显示中文
+env >> /etc/default/locale
+
+# 开启crontab服务
 /etc/init.d/cron start
 
 # 运行 php-fpm
