@@ -47,9 +47,8 @@ RUN if [ $CHANGE_SOURCE = true ]; then \
 ;fi
 
 # Crontab
-RUN touch /var/spool/cron/crontabs/root \
- && chown -R root:crontab /var/spool/cron/crontabs/root \
- && chmod 600 /var/spool/cron/crontabs/root \
- && touch /var/log/cron.log
+COPY task /var/spool/cron/crontabs/root
+RUN chown -R root:crontab /var/spool/cron/crontabs/root \
+ && chmod 600 /var/spool/cron/crontabs/root
 
 ENTRYPOINT ["/bin/bash", "/home/start.sh"]

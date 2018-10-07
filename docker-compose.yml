@@ -50,7 +50,7 @@ services:
       volumes:
         - ./work/components/mysql/data:/var/lib/mysql:rw
         - ./work/components/mysql/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
-        - ./work/components/mysql/log/error.log:/var/log/mysql/error.log:rw
+        - ./work/components/mysql/log:/var/log/mysql:rw
       restart: always
       environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
