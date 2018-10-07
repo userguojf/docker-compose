@@ -34,6 +34,7 @@ services:
         - ./work/components/php72/log:/var/log:rw
         - ./work/components/php72/start.sh:/home/start.sh:rw
         - ./work/components/php72/crontabs/root:/var/spool/cron/crontabs/root:rw
+        - ./work/components/php72/backup:/backup:rw
       restart: always
       networks:
         - net-php72
