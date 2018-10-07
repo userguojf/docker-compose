@@ -47,7 +47,7 @@ RUN if [ $CHANGE_SOURCE = true ]; then \
 ;fi
 
 # 在 docker 里使用 Crontab 时候需要取消验证
-RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/cron
+# RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/cron
 
 ENV LC_ALL C.UTF-8
 
