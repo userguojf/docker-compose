@@ -4,7 +4,7 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
 
 ##### 产品特色
 
-* 灵活切换适合国内的源（apt-get、PHP Composer）
+* 灵活切换适合国内的源（Apt-get、PHP Composer）
 * 组件精简易懂，学习、测试环境、生产环境均适合
 * 可能是最易用的计划任务（安装在 PHP 组件里）
 * 良好的扩展性
