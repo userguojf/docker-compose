@@ -17,7 +17,7 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
 RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get -y upgrade
 
 # Install Base Components
-RUN apt-get install -y --no-install-recommends libpq-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev  ntpdate cron vim unzip git
+RUN apt-get install -y --no-install-recommends mysql-client libpq-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev  ntpdate cron vim unzip git
 
 ####################################################################################
 # Install Extension
