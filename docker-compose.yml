@@ -1,19 +1,24 @@
 version: '3'
 services:
-
+  ## Compose 模版文件支持动态读取主机的系统环境变量和当前目录下的.env文件中的变量
   ### Nginx container #########################################
 
   nginx:
-      image: nginx:alpine
+      ## 注意每个服务都必须通过 image 指令指定镜像或 build 指令（需要 Dockerfile）等来自动构建生成镜像。
+      image: nginx:1.15.5
+      ## 暴露端口信息。（使用宿主端口：容器端口 (HOST:CONTAINER) 格式，或者仅仅指定容器的端口（宿主将会随机选择端口）都可以。）     
       ports:
-        - "${HTTP_PORT}:80"
-        - "${HTTPS_PORT}:443"
+        - "${HTTP_PORT}:80"  
+        - "${HTTPS_PORT}:443"  
+      ## 数据卷所挂载路径设置。可以设置宿主机路径 （HOST:CONTAINER） 或加上访问模式 （HOST:CONTAINER:ro）
       volumes:
         - ./work/wwwroot:/etc/nginx/html/:rw
         - ./work/components/nginx/config/nginx.conf:/etc/nginx/nginx.conf:ro
         - ./work/components/nginx/config/conf.d:/etc/nginx/conf.d:ro
-        - ./work/components/nginx/log:/var/log/nginx:rw
+        - ./work/components/nginx/log:/etc/nginx/log:rw
+      ## 指定容器退出后的重启策略为始终重启。该命令对保持服务始终运行十分有效，在生产环境中推荐配置为 always 或者 unless-stopped。 
       restart: always
+      ## 配置容器连接的网络
       networks:
         - net-php72
 
@@ -21,7 +26,9 @@ services:
 
   php72:
       build:
+        ## 指令指定 Dockerfile 所在文件夹的路径。
         context: ./build/php72
+        ## 使用 arg 指令指定构建镜像时的变量
         args:
           TIME_ZONE: ${GLOBAL_TIME_ZONE}
           CHANGE_SOURCE: ${GLOBAL_CHANGE_SOURCE}
@@ -44,7 +51,7 @@ services:
   ### Mysql container #########################################
 
   mysql:
-      image: mysql:5.6
+      image: mysql:8.0
       ports:
         - "${MYSQL_PORT}:3306"
       volumes:
