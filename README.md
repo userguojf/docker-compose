@@ -30,14 +30,11 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
     |----/docker-compose.yml     docker compose 配置文件
 
 #### 开始安装
-
-没有安装 Docker 的同学
-
     cd ~/
     git clone git@github.com:userguojf/docker-compose.git
 
     cd docker-lnmp
-    mv .env .env.example（或者rm -rf .env）
+    mv .env .env.example.default（或者rm -rf .env）
     cp .env-example .env
 
     # 配置数据库密码、时区、端口等
@@ -124,4 +121,3 @@ DaoCloud 加速器：http://guide.daocloud.io/dcs/daocloud-9153151.html
 
 腾讯云加速器：https://www.qcloud.com/document/product/457/7207
 
-## License
