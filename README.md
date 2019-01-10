@@ -41,6 +41,7 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
     vim .env
 
     # 构建镜像并启动容器
+    ## docker-compose.yml  文件各个字段已经添加注释
     sudo docker-compose up --build -d
 
 启动成功访问 http://localhost:8000 即可
