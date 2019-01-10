@@ -13,7 +13,7 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
 ##### 版本及组件
 
 * 当前版本：3.0
-* 自带组件：PHP/FPM 7.2、Nginx latest、Mysql 5.6、Redis 4.0
+* 自带组件：PHP/FPM 7.2、Nginx latest、Mysql 8.0、Redis 4.0
 
 ##### 目录结构
 
@@ -24,18 +24,20 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
     |------------/component      组件，包括了数据、配置文件、日志等持久化数据
     |-----------------/config    组件的配置目录
     |-----------------/log       组件的日志目录
-    |--------/wwwroot            WEB 文件目录
-    |----/.env-example           配置文件
+    |--------/wwwroot            WEB 文件目录/index.php测试是否安装成功文件 和 运行laravel项目
+    |----/.env-example           配置文件模版
+    |----/.env                   自定义配置文件(样例)
     |----/docker-compose.yml     docker compose 配置文件
 
 #### 开始安装
 
-没有安装 Docker 的同学移步 [安装教程](https://github.com/exc-soft/docker-lnmp#安装-docker-及相关工具)
+没有安装 Docker 的同学
 
     cd ~/
-    git clone https://github.com/exc-soft/docker-lnmp.git
+    git clone git@github.com:userguojf/docker-compose.git
 
     cd docker-lnmp
+    mv .env .env.example（或者rm -rf .env）
     cp .env-example .env
 
     # 配置数据库密码、时区、端口等
@@ -44,7 +46,7 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
     # 构建镜像并启动容器
     sudo docker-compose up --build -d
 
-启动成功访问 http://localhost 即可
+启动成功访问 http://localhost:8000 即可
 
 #### 可能遇到的问题
 
@@ -72,33 +74,17 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
     # 2、重新构建镜像
     sudo docker-compose build [php72|...]
 
+##### 注意 这个命令很查看日志信息docker logs : 获取容器的日志
+    #docker logs [OPTIONS] CONTAINER
+
 ##### 如何设置开机启动服务？
 
-    # 编辑开机启动文件，写入  cd /home/your/docker-lnmp && compose up -d
+    # 编辑开机启动文件，写入  cd /yourdir/docker-lnmp && compose up -d
     # 注意这里不用 sudo，本身是使用 root 运行的
     sudo vim /etc/rc.local
 
     # 重启测试
     sudo reboot
-
-##### 如何在 php 里连接 Mysql 和 Redis？
-
-    <?php
-        // 连接 Mysql
-        $user = "root";
-        $pass = "DockerLNMP";
-        $dbh = new PDO('mysql:host=mysql;dbname=mysql', $user, $pass);
-        
-        foreach($dbh->query('SELECT * from user') as $row) {
-            print_r($row);
-        }
-
-        // 连接 Redis
-        $redis = new Redis();
-        $redis->connect('redis', 6379);
-        $redis->set("test-key","hello");
-        echo "Stored string in redis:: " . $redis->get("test-key");
-    ?>
 
 ##### 如何使用 PHP 组件里的计划任务？
 
@@ -118,8 +104,6 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
     # 2、参考 daocloud 提供的文档
     # 注意按照文档如果执行类似 install docker-ce=17.03.1* 出错，执行 install docker-ce 即可
     https://download.daocloud.io/Docker_Mirror/Docker
-    
-    
 
 ##### 2、安装 docker-compose
     
@@ -141,4 +125,3 @@ DaoCloud 加速器：http://guide.daocloud.io/dcs/daocloud-9153151.html
 腾讯云加速器：https://www.qcloud.com/document/product/457/7207
 
 ## License
-MIT
