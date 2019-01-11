@@ -72,7 +72,7 @@ Docker LNMP 可以构建出基于 Docker 的 PHP 开发环境，其优势有在�
     # 2、重新构建镜像
     sudo docker-compose build [php72|...]
 
-##### 注意 这个命令很查看日志信息docker logs : 获取容器的日志
+##### 注意 这个命令很查看日志信息docker logs ID (容器ID): 获取容器的日志
     #docker logs [OPTIONS] CONTAINER
 
 ##### 如何设置开机启动服务？
